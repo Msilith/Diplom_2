@@ -11,38 +11,38 @@ public class UserAction extends BaseApi {
     public UserAction() {
     }
 
-    public Response postRequestCreateUser(Object obj) {
+    public Response postRequestCreateUser(Object createUser) {
         return given(RequestSpecification())
-                .body(obj)
+                .body(createUser)
                 .when()
                 .post(PathApi.CREATE_USER);
     }
 
-    public Response postRequestLogIn(Object obj) {
+    public Response postRequestLogIn(Object authorization) {
         return given(RequestSpecification())
-                .body(obj)
+                .body(authorization)
                 .when()
                 .post(PathApi.LOGIN_USER);
     }
 
-    public Response getRequestUserInfo(Object obj) {
+    public Response getRequestUserInfo(Object userInfo) {
         return given(RequestSpecification())
-                .header("Authorization", obj)
+                .header("Authorization", userInfo)
                 .when()
                 .get(PathApi.GET_INFO_USER);
     }
 
-    public Response patchRequestUserInfo(Object obj, Object obj1) {
+    public Response patchRequestUserInfo(Object authorization, Object userInfo) {
         return given(RequestSpecification())
-                .header("Authorization", obj)
-                .body(obj1)
+                .header("Authorization", authorization)
+                .body(userInfo)
                 .when()
                 .patch(PathApi.PATCH_USER);
     }
 
-    public Response patchRequestUserInfoNotToken(Object obj) {
+    public Response patchRequestUserInfoNotToken(Object userInfoNotToken) {
         return given(RequestSpecification())
-                .body(obj)
+                .body(userInfoNotToken)
                 .when()
                 .patch(PathApi.PATCH_USER);
     }

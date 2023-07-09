@@ -19,17 +19,18 @@ public class OrderAction extends BaseApi {
                 .get(PathApi.GET_INGREDIENTS);
     }
 
-    public Response postRequestCreateOrderLogIn(Object obj, Object obj1) {
-        return given(RequestSpecification())
-                .header("Authorization", obj1)
-                .body(obj)
+    public Response postRequestCreateOrderLogIn(Object createOrder, Object requestLogIn) {
+        Response authorization = given(RequestSpecification())
+                .header("Authorization", requestLogIn)
+                .body(createOrder)
                 .when()
                 .post(PathApi.CREATE_ORDER);
+        return authorization;
     }
 
-    public Response getRequestAllOrdersUserLogIn(Object obj) {
+    public Response getRequestAllOrdersUserLogIn(Object authorization) {
         return given(RequestSpecification())
-                .header("Authorization", obj)
+                .header("Authorization", authorization)
                 .when()
                 .get(PathApi.GET_ORDER_USER);
     }
@@ -40,9 +41,9 @@ public class OrderAction extends BaseApi {
                 .get(PathApi.GET_ORDER_USER);
     }
 
-    public Response postRequestCreateOrderNotLogIn(Object obj) {
+    public Response postRequestCreateOrderNotLogIn(Object createOrder) {
         return given(RequestSpecification())
-                .body(obj)
+                .body(createOrder)
                 .when()
                 .post(PathApi.CREATE_ORDER);
     }
